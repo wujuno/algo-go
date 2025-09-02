@@ -18,3 +18,4 @@
 - slice/head-index
 - io/bufio
 - fmt/fscan
+- retry

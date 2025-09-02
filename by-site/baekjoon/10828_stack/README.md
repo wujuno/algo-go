@@ -32,3 +32,4 @@
 - complexity/time-O(N)-per-op
 - complexity/space-O(N)-maxstack
 - N/num-commands
+- retry
