@@ -14,15 +14,16 @@ func main() {
 	var score int
 	fmt.Fscan(in, &score)
 
-	if (score >= 90 && score <= 100 ) {
+	switch score/10 {
+	case 10, 9:
 		fmt.Fprintln(out, "A")
-	} else if (score >= 80 && score < 90 ) {
+	case 8:
 		fmt.Fprintln(out, "B")
-	} else if (score >= 70 && score < 80 ) {
+	case 7:
 		fmt.Fprintln(out, "C")
-	} else if (score >= 60 && score < 70 ) {
+	case 6:
 		fmt.Fprintln(out, "D")
-	} else {
+	default:
 		fmt.Fprintln(out, "F")
 	}
 }
