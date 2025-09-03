@@ -20,7 +20,7 @@
 ## 3) 실행 & 제출 팁
 
 ```bash
-# 로컬 실행(예시: A+B)
+# 로컬 실행(예시: A+B )
 go run ./by-site/baekjoon/1000_AplusB/main.go < by-site/baekjoon/1000_AplusB/input_example.txt
 ```
 
