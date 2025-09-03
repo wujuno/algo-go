@@ -29,8 +29,8 @@ func main() {
 		vis := make([][]bool, N)
 
 		for i :=0; i < N; i++ {
-			grid[i] = make([]bool, 0, M)
-			vis[i] = make([]bool, 0, M)
+			grid[i] = make([]bool, M)
+			vis[i] = make([]bool, M)
 		}
 
 		for i := 0; i <K; i++ {
@@ -39,22 +39,47 @@ func main() {
 			grid[y][x] = true
 		}
 
-		q := make([]pos,0,N*M)
+		q := make([]pos,N*M)
 		count := 0
+		
 
+		
 		for y:= 0; y < N; y++ {
 			for x:=0; x < M; x++ {
 				if(!grid[y][x] || vis[y][x]) {
 					continue
 				}
-
 				count++
+				head, tail := 0,0
+				q[tail] = pos{x,y}
+				vis[y][x] = true
+				tail++
+				
+				for head < tail {
+					cur := q[head]
+					head++
 
-				for d:=0; d<4; d++ {
-					
+					for d:=0; d<4; d++ {
+					nx := cur.x + dx[d]
+					ny := cur.y + dy[d]
+
+					if ny >= N || nx >= M || ny < 0 || nx < 0 {
+						continue
+					}
+					if !grid[ny][nx] || vis[ny][nx] {
+						continue
+					}
+
+					vis[ny][nx] = true
+					q[tail] = pos{nx, ny}
+					tail++
+					}
+
 				}
+
+				
 			}
 		}
-
+		fmt.Fprintln(out, count)
 	}
 }
