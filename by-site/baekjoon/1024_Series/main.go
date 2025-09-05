@@ -15,26 +15,23 @@ func main() {
 	var L int
 	fmt.Fscan(in, &N, &L)
 
-	found := false
+	found := false // 최소 값으로 조건문을 탈출하기 위한 flag
 	var start int64
 	var ansK int
 
-	for k := L; k <= 100; k++ {
+	for k := L; k <= 100; k++ { // 주어진 최소길이 부터 100까지 순회
 		num := 2*N - int64(k*(k-1))
 		den := int64(2*k)
 
-		if num < 0 {
+		if num < 0 { // 분가값이 0보다 작아지는 순간 -1 출력
 			break
 		}
 
-		if num % den != 0 {
+		if num % den != 0 { // 자연수가 아니라면 지속
 			continue
 		}
 
 		x := num / den
-		if x < 0 {
-			continue
-		}
 
 		start = x
 		ansK = k
@@ -53,5 +50,4 @@ func main() {
 		}
 		fmt.Fprint(out, start+int64(i))
 	}
-	fmt.Fprintln(out)
 }
