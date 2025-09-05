@@ -12,8 +12,9 @@
 
 ## 키워드
 
-bfs
-dfs
-grid
-connected-components
-flood-fill
+- bfs
+- dfs
+- grid
+- connected-components
+- flood-fill
+- retry
