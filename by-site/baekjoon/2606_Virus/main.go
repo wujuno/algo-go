@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"sort"
 )
 
 func main() {
@@ -12,42 +11,39 @@ func main() {
 	out := bufio.NewWriter(os.Stdout)
 	defer out.Flush()
 
-	var C, N int
-	fmt.Fscan(in, &C,&N)
+	var N, M int
+	fmt.Fscan(in, &N, &M)
 
-	g := make([][]int, C+1)
+	g := make([][]int, N+1)
 
-	for i := 0; i < N; i++ {
+	for i :=0; i < M; i++ {
 		var a,b int
 		fmt.Fscan(in, &a, &b)
+
 		g[a] = append(g[a], b)
 		g[b] = append(g[b], a)
 	}
 
-	for i := 1; i <= C; i++ {
-		sort.Ints(g[i])
-	}
-
-	visited := make([]bool, C+1)
-	q := make([]int, 0, C)
-
-	visited[1] = true
-	q = append(q, 1)
-
+	vis := make([]bool, N+1)
+	vis[1]= true
+	q := make([]int, N)
 	head := 0
-	infected := 0
+	q = append(q, 1)
+	count := 0
 
 	for head < len(q) {
 		cur := q[head]
 		head++
 
-		for _, nxt := range g[cur] {
-			if !visited[nxt] {
-				visited[nxt] = true
-				q = append(q, nxt)
-				infected++
+		for _, v := range g[cur] {
+			if !vis[v] {
+				vis[v] = true
+				q = append(q, v)
+				count++
 			}
+
 		}
 	}
-	fmt.Fprintln(out, infected)
+
+	fmt.Fprintln(out, count)
 }
