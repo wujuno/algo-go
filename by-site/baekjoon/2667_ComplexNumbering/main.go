@@ -4,19 +4,10 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 )
 
 func main() {
-	in := bufio.NewReader(os.Stdin)
-	out := bufio.NewWriter(os.Stdout)
-	defer out.Flush()
-
-	var N int
-	fmt.Fscan(in, &N)
-
-}
-
-/* func main() {
 	in := bufio.NewReader(os.Stdin)
 	out := bufio.NewWriter(os.Stdout)
 	defer out.Flush()
@@ -84,4 +75,4 @@ func main() {
 	for _, v := range sizes {
 		fmt.Fprintln(out, v)
 	}
-} */
+}
