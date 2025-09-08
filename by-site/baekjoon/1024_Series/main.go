@@ -7,6 +7,48 @@ import (
 )
 
 func main() {
+
+	in := bufio.NewReader(os.Stdin)
+	out := bufio.NewWriter(os.Stdout)
+	defer out.Flush()
+
+	var N, L int
+	fmt.Fscan(in, &N, &L)
+
+	found := false
+	var start int
+	var ansK int 
+	
+	for i := L; i<=100; i++ {
+		a := 2*N - (i*(i-1))
+		b := 2*i
+
+		if a <0 {
+			continue
+		}
+		if a % b != 0 {
+			continue
+		}
+
+		start = a/b
+		ansK = i
+		found = true
+		break
+	}
+
+	if !found {
+		fmt.Fprintln(out, -1)
+	}
+
+	for i :=0; i<ansK; i++ {
+		if i > 0 {
+			fmt.Fprint(out, " ")
+		}
+		fmt.Fprint(out, start+i)
+	}
+}
+
+/* func main() {
 	in := bufio.NewReader(os.Stdin)
 	out := bufio.NewWriter(os.Stdout)
 	defer out.Flush()
@@ -50,4 +92,4 @@ func main() {
 		}
 		fmt.Fprint(out, start+int64(i))
 	}
-}
+} */
