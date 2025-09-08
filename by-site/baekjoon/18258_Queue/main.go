@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+
 func main() {
 	in := bufio.NewReader(os.Stdin)
 	out := bufio.NewWriter(os.Stdout)
@@ -15,7 +16,7 @@ func main() {
 	fmt.Fscan(in, &n)
 
 	q := make([]int, 0, n)
-	head := 0 
+	head := 0
 
 	for i := 0; i < n; i++ {
 		var cmd string
@@ -31,7 +32,7 @@ func main() {
 			if head >= len(q) {
 				fmt.Fprintln(out, -1)
 			} else {
-				fmt.Fprintln(out, q[head]) 
+				fmt.Fprintln(out, q[head])
 				head++
 			}
 
@@ -49,14 +50,14 @@ func main() {
 			if head >= len(q) {
 				fmt.Fprintln(out, -1)
 			} else {
-				fmt.Fprintln(out, q[head]) 
+				fmt.Fprintln(out, q[head])
 			}
 
 		case "back":
 			if head >= len(q) {
 				fmt.Fprintln(out, -1)
 			} else {
-				fmt.Fprintln(out, q[len(q)-1]) 
+				fmt.Fprintln(out, q[len(q)-1])
 			}
 		}
 	}
