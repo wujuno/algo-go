@@ -16,35 +16,30 @@ func main() {
 
 	stack := make([]int, 0, n)
 
-	for i := 0; i < n; i++ {
-		var cmd string
-		fmt.Fscan(in, &cmd)
+	for i := 0; i <n ; i++ {
+		var s string
+		fmt.Fscan(in, &s)
 
-		switch cmd {
+		switch s {
 		case "push":
-			var x int
-			fmt.Fscan(in, &x)
-			stack = append(stack, x)
-
-		case "pop":
+			var num int
+			fmt.Fscan(in, &num)
+			stack = append(stack, num)
+		case "pop": 
 			if len(stack) == 0 {
 				fmt.Fprintln(out, -1)
 			} else {
-				top := stack[len(stack)-1]
-				fmt.Fprintln(out, top)
+				fmt.Fprintln(out, stack[len(stack)-1])
 				stack = stack[:len(stack)-1]
 			}
-
 		case "size":
 			fmt.Fprintln(out, len(stack))
-
 		case "empty":
 			if len(stack) == 0 {
 				fmt.Fprintln(out, 1)
-			} else {
+				} else {
 				fmt.Fprintln(out, 0)
 			}
-
 		case "top":
 			if len(stack) == 0 {
 				fmt.Fprintln(out, -1)
@@ -52,6 +47,8 @@ func main() {
 				fmt.Fprintln(out, stack[len(stack)-1])
 			}
 		}
+
+		
 	}
 
 }
