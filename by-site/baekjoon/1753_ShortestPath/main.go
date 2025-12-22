@@ -17,7 +17,7 @@ type Item struct {
 	dist int
 }
 
-type MinHeap []Item
+type MinHeap []Item  // 정점(V)이 2만 개, 간선(E)이 30만 개나 되는 경우, 일반 리스트를 쓰면 시간 초과(TLE)가 발생합니다.
 
 func (h MinHeap) Len() int {return len(h)}
 func (h MinHeap) Less(i, j int) bool {return h[i].dist < h[j].dist}
@@ -48,7 +48,7 @@ func main() {
 		g[u] = append(g[u], Edge{to: v, w:w})
 	} 
 
-	const INF = int(1 << 60)
+	const INF = int(1 << 60) // 매우 큰 값을 선언하여 dist[i]에 모두 대입
 	dist := make([]int, V+1)
 	for i := 1; i <=V; i++ {
 		dist[i] = INF
@@ -61,7 +61,7 @@ func main() {
 
 	for h.Len() > 0 {
 		cur := heap.Pop(h).(Item)
-		if cur.dist != dist[cur.node] {
+		if cur.dist != dist[cur.node] { // 이미 처리된 낡은 정보(Stale Data)를 걸러내기 위함. 
 			continue
 		}
 
