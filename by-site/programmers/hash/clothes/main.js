@@ -1,4 +1,4 @@
-function solution(clothes) {
+/* function solution(clothes) {
   // 1. 의상 종류별 개수를 담을 객체 생성
   const counts = {};
 
@@ -14,5 +14,19 @@ function solution(clothes) {
   }
 
   // 3. 아무것도 입지 않은 경우 1을 빼고 반환
+  return answer - 1;
+} */
+
+function solution(clothes) {
+  let answer = 1;
+
+  let obj = {};
+  for (const [name, type] of clothes) {
+    obj[type] = (obj[type] || 0) + 1;
+  }
+
+  for (const key in obj) {
+    answer *= obj[key] + 1;
+  }
   return answer - 1;
 }
