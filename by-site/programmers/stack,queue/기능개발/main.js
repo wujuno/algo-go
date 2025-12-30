@@ -1,4 +1,4 @@
-function solution(progresses, speeds) {
+/* function solution(progresses, speeds) {
   var answer = [];
 
   // 1. 각 작업이 완료되기까지 걸리는 일수 계산
@@ -28,3 +28,6 @@ function solution(progresses, speeds) {
 
   return answer;
 }
+ */
+
+function solution(progresses, speeds) {}
