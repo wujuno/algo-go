@@ -30,4 +30,23 @@
 }
  */
 
-function solution(progresses, speeds) {}
+function solution(progresses, speeds) {
+  var answer = [];
+  const arr = progresses.map((p, i) => Math.ceil((100 - p) / speeds[i]));
+
+  let maxDay = arr[0];
+  let count = 0;
+
+  for (const p of arr) {
+    if (p <= maxDay) {
+      count++;
+    } else {
+      answer.push(count);
+      count = 1;
+      maxDay = p;
+    }
+  }
+  answer.push(count);
+
+  return answer;
+}
