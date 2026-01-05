@@ -38,18 +38,18 @@
 function solution(numbers) {
   const set = new Set();
   function getPermutations(currStr, remainingStr) {
-    if (currStr.length >= 1) set.add(currStr);
+    if (currStr.length >= 1) set.add(Number(currStr));
 
     for (let i = 0; i < remainingStr.length; i++) {
       getPermutations(
-        remainingStr[i],
+        currStr + remainingStr[i],
         remainingStr.slice(0, i) + remainingStr.slice(i + 1)
       );
     }
   }
 
   function isPrime(x) {
-    if (x == 1) return false;
+    if (x < 2) return false;
     for (let i = 2; i <= Math.sqrt(x); i++) {
       if (x % i === 0) return false;
     }
