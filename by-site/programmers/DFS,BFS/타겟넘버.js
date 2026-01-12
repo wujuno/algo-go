@@ -1,4 +1,4 @@
-function solution(numbers, target) {
+/* function solution(numbers, target) {
   let answer = 0;
 
   // DFS 함수 정의 (현재 인덱스, 현재까지의 합계)
@@ -21,4 +21,25 @@ function solution(numbers, target) {
   dfs(0, 0);
 
   return answer;
+} */
+
+
+function solution(numbers, target) {
+  let answer = 0
+
+  function dfs(index, sum) {
+    if (index == numbers.length) {
+      if (sum == target) {
+        answer++
+      }
+      return
+    }
+
+    dfs(index + 1, sum + numbers[index])
+    dfs(index + 1, sum - numbers[index])
+  }
+
+  dfs(0, 0)
+
+  return ansewer
 }
