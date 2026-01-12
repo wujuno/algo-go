@@ -41,5 +41,5 @@ function solution(numbers, target) {
 
   dfs(0, 0)
 
-  return ansewer
+  return answer
 }
