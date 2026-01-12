@@ -1,4 +1,4 @@
-function solution(name) {
+/* function solution(name) {
   let answer = 0;
   const len = name.length;
 
@@ -31,4 +31,32 @@ function solution(name) {
   }
 
   return answer + minMove;
+}
+
+ */
+
+function solution(name) {
+  let answer = 0;
+  const len = name.length;
+
+  for (let i = 0; i < len; i++) {
+    const charCode = name.charCodeAt(i);
+    answer += Math.min(charCode - 65, 91 - charCode)
+  }
+
+  let minMove = len - 1
+
+  for (let i = 0; i < len; i++) {
+    let next = i + 1;
+
+    while (next < len && name[next] === 'A') {
+      next++
+    }
+
+    minMove = Math.min(minMove, i * 2 + (len - next))
+
+    minMove = Math.min(minMove, (len - next) * 2 + i)
+  }
+
+  return answer + minMove
 }
