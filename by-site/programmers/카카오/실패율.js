@@ -1,37 +1,27 @@
 function solution(N, stages) {
-  let totalPlayers = stages.length;
+  let result = [];
+  let totalPlayers = stages.length; // 처음엔 모든 인원이 1스테이지 도달자
 
-  // 1. 각 스테이지별 머물러 있는(실패한) 사람 수 계산
-  const stageCounts = new Array(N + 2).fill(0);
-  stages.forEach((s) => stageCounts[s]++);
-
-  // 2. 스테이지별 실패율 계산
-  const failRates = [];
   for (let i = 1; i <= N; i++) {
-    let failureCount = stageCounts[i];
-    let ratio = 0;
+    // 1. 현재 스테이지에 도달했으나 클리어하지 못한 인원
+    const challengers = stages.filter(v => v === i).length;
 
-    if (totalPlayers > 0) {
-      ratio = failureCount / totalPlayers;
-      totalPlayers -= failureCount; // 다음 스테이지 도전자 수 계산
-    } else {
-      ratio = 0; // 해당 스테이지에 도달한 유저가 없는 경우
-    }
+    // 2. 실패율 계산 (분모가 0인 경우 예외처리 필수)
+    const failRatio = totalPlayers === 0 ? 0 : challengers / totalPlayers;
 
-    failRates.push({ stage: i, ratio: ratio });
+    result.push({ stage: i, ratio: failRatio });
+
+    // 3. 다음 스테이지 도달 인원은 현재 스테이지 인원을 뺀 만큼임
+    totalPlayers -= challengers;
   }
 
-  // 3. 정렬 로직
-  // ratio 기준 내림차순, 같으면 stage 기준 오름차순
-  failRates.sort((a, b) => {
-    if (b.ratio === a.ratio) {
-      return a.stage - b.stage;
-    }
+  // 4. 정렬: 실패율 내림차순 -> 실패율 같으면 스테이지 오름차순
+  result.sort((a, b) => {
+    if (b.ratio === a.ratio) return a.stage - b.stage;
     return b.ratio - a.ratio;
   });
 
-  // 4. 스테이지 번호만 추출
-  return failRates.map((item) => item.stage);
+  return result.map(v => v.stage);
 }
 
 // 1번 스테이지의 도전자 중 그 스테이지를 못 깬 사람을 빼면, 자연스럽게 2번 스테이지의 도전자가 됩니다.
