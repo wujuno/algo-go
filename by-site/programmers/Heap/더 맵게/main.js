@@ -1,6 +1,4 @@
-
-
-/* function solution(scoville, K) {
+function solution(scoville, K) {
   var answer = 0;
   const heap = []; // 일단 heap을 생성
 
@@ -19,67 +17,12 @@
   }
 
   function pop() {
-    if(heap.length == 0) return null; // heap의 길이가 0과 1일때 우선 리턴
-    if(heap.length == 1) return heap.pop()
-
-    const min = heap[0] // 리턴할 최소값 먼저 대입
-    heap[0] = heap.pop() // 첫번째 인덱스에 마지막 값 넣기
-
-    let cur = 0 
-
-    while(cur *2 + 1 < heap.length) {
-      let left = cur * 2 + 1
-    let right = cur * 2 + 2
-
-    let smaller = right < heap.length && heap[right] < heap[left] ? right : left 
-
-    if (heap[cur] <= heap[smaller]) break
-    else {
-      [heap[cur], heap[smaller]] = [heap[smaller], heap[cur]];
-      cur = smaller
-    }
-    }
-    
-    return min
-  }
-
-  for (let s of scoville) push(s)
-  
-  while(heap[0] < K) {
-    if(heap.length < 2) return -1
-
-     const first = pop();
-    const second = pop();
-    const mixed = first + second * 2;
-
-    push(mixed);
-    answer++;
-  }
-  return answer;
-}
- */function solution(scoville, K) {
-  const heap = []
-  function push(val) {
-    heap.push(val)
-
-    let cur = heap.length - 1
-
-    while (cur > 0) {
-      let parent = Math.floor((cur - 1) / 2)
-
-      if (heap[parent] <= heap[cur]) {
-        [heap[cur], heap[parent]] = [heap[parent], heap[cur]]
-        cur = parent;
-      }
-    }
-  }
-
-  function pop() {
     if (heap.length == 0) return null; // heap의 길이가 0과 1일때 우선 리턴
     if (heap.length == 1) return heap.pop()
 
     const min = heap[0] // 리턴할 최소값 먼저 대입
     heap[0] = heap.pop() // 첫번째 인덱스에 마지막 값 넣기
+
     let cur = 0
 
     while (cur * 2 + 1 < heap.length) {
@@ -110,6 +53,5 @@
     push(mixed);
     answer++;
   }
-
   return answer;
 }
